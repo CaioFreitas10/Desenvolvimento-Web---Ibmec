@@ -1,0 +1,120 @@
+/* --- RESET E BASE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* --- ETAPA 1 E 4: GRID PRINCIPAL --- */
+.pagina {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "topo topo"
+        "destaque novidades"
+        "categorias categorias"
+        "rodape rodape";
+    min-height: 100vh;
+    gap: 12px;
+    padding: 12px;
+}
+
+/* --- ETAPA 1 E 3: ÁREAS E ALINHAMENTOS --- */
+.topo {
+    grid-area: topo;
+    background-color: #003366;
+    color: #fff;
+    padding: 20px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    min-height: 100px;
+}
+
+.destaque {
+    grid-area: destaque;
+    background-color: #00509e;
+    color: #FFCC00;
+    padding: 20px;
+    display: grid;
+    align-items: start;
+    justify-items: center;
+}
+
+.destaque .preco {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFCC00;
+    margin-top: 12px;
+}
+
+.novidades {
+    grid-area: novidades;
+    background-color: #1565C0;
+    color: #fff;
+    padding: 20px;
+}
+
+/* --- ETAPA 2: GRID DE CATEGORIAS --- */
+.categorias {
+    grid-area: categorias;
+    background-color: #e8edf2;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+}
+
+/* ESTILO E DESAFIO DOS CARDS */
+.card-cat {
+    background-color: #003366;
+    color: #FFCC00;
+    font-weight: bold;
+    text-align: center;
+    padding: 24px 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.card-cat:first-child {
+    grid-column: span 2;
+}
+
+.rodape {
+    grid-area: rodape;
+    background-color: #1A1A2E;
+    color: #ccc;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+}
+
+/* --- ETAPA 4: AJUSTE RESPONSIVO MOBILE --- */
+@media (max-width: 600px) {
+    .pagina {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "topo"
+            "destaque"
+            "novidades"
+            "categorias"
+            "rodape";
+    }
+
+    .categorias {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    /* Desfaz o span 2 do primeiro card em mobile */
+    .card-cat:first-child {
+        grid-column: auto;
+    }
+}
